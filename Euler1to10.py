@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 import math;
 
 class Stack:
@@ -68,7 +69,78 @@ def Euler2(m):
     
 
     
-
+def Euler3(m):
+     #The prime factors of 13195 are 5, 7, 13 and 29.
+     #What is the largest prime factor of the number 600851475143 ?
+     primes = [];
+     index = 0;
     
+     count = 2;
+     while (count<=m):
+          if (m%count ==0):
+               m/=count;
+               if (primes.count(count) ==0):
+                    primes.append(count)
+          else:
+               count+=1;
 
-    
+     i = 0;
+     for i in range (0,len(primes)):
+          max = primes[0];
+          if (primes[i]>max):
+               max = primes[i];
+
+     return max;
+
+
+#TODO
+def Euler4(numDigits):
+     #A palindromic number reads the same both ways.
+     #The largest palindrome made from the product of two 2-digit numbers is 9009=91×99.
+     #Find the largest palindrome made from the product of two 3-digit numbers.
+     found = False;
+     max = int(math.pow(10,numDigits)-1)
+     number1 = max;
+     number2 = max
+     result = 0;
+     palindromes = [];
+     
+     def findPalindromes(n ,a):
+          count = int(math.pow(10,numDigits))*int(math.pow(10,numDigits))-1;
+          while (count>0):
+               if ((str(count)==reverse(str(count)))):
+                   a.append(count);
+               count-=1;
+     
+     def reverse(n):
+          result="";
+          i=len(n)-1;
+          #print "In Number: ", n;
+          while(i>-1):
+               result+=n[i];
+               i-=1;
+         # print "Result: ", result;
+          return result;
+
+     findPalindromes(numDigits, palindromes);
+     print palindromes
+
+     while(found == False):
+          # do stuff
+          counter1 = 0;
+          counter2 = 0;
+          if (palindromes[counter1]%number1 ==0):
+               while(number2!=0):
+                    if ((palindromes[counter1]%number1)%number2 == 0):
+                         found = True;
+                    else:
+                         number2-=1;
+          else:
+               number1-=1;
+          if (number1==0):
+               number2 = max;
+               number1 = max;
+               counter1 +=1;
+
+     print "Numbers are: ", number1, " and ", number2
+
